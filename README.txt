@@ -2,7 +2,7 @@
 Ogo Venus exploration
 
 Functions that need to be programmed:
-(functions that are cursive are finished)
+(functions that are *cursive* are finished)
 - Drive_forward_continuous
 - Drive_back_continuous
 - Drive_forward_n_grid_spaces
