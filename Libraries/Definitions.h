@@ -4,5 +4,9 @@
 
 #define pin_encoder_left 7
 #define pin_encoder_right 8
+#define pin_ultrasound 9
+#define pin_servo_head 11
 #define pin_wheel_left 12
 #define pin_wheel_right 13
+#define pin_IR_rock XX		!!
+#define pin_IR_ground XX	!!

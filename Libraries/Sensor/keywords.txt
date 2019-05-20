@@ -1,0 +1,3 @@
+Sensor	KEYWORD1
+ultrasound	KEYWORD2
+ir_ground	KEYWORD2
