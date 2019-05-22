@@ -8,5 +8,5 @@
 #define pin_servo_head 11
 #define pin_wheel_left 12
 #define pin_wheel_right 13
-#define pin_IR_rock XX		!!
-#define pin_IR_ground XX	!!
+#define pin_IR_rock 100		
+#define pin_IR_ground 	101
