@@ -14,6 +14,7 @@ Servo Move::head;
 
 //Create int
 int Move::LEstatus;
+int Move::rotation = 0;
 int Move::state1, Move::state2;
 int Move::i = 0;
 float Move::distance = 0;
@@ -75,8 +76,8 @@ void Move::turn(float Degrees){
   int count1 = 0;
   int count2 = 0;
   int prev_value1 = digitalRead(pin_encoder_left); // save the starting value
-  int value_now1;
   int prev_value2 = digitalRead(pin_encoder_right); // save the starting value
+  int value_now1;
   int value_now2;
   float d1 = (Degrees/360)*10*3.14;
   float calculation2 = abs(round((d1/20.73)*15));
@@ -105,6 +106,15 @@ void Move::turn(float Degrees){
     }
   wheel_left.detach();
   wheel_right.detach();
+
+  int DegreesINT = (int) Degrees;
+  rotation = rotation + DegreesINT;
+  if (rotation >= 360) {
+    rotation = rotation%360;
+  }
+  else if (rotation <= -360) {
+    rotation = rotation%(-360);
+  }
 }
 
 void Move::head(int angle)	//forward is 90 degree angle, range is from 0 -> 180
