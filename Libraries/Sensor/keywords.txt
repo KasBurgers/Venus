@@ -1,0 +1,4 @@
+Sensor	KEYWORD1
+ultrasound	KEYWORD2
+IRground	KEYWORD2
+IRrock	KEYWORD2
