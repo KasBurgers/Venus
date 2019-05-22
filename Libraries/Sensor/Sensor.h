@@ -8,4 +8,6 @@ class Sensor{
 		bool ir_ground();
 	private:
 		int ir_voltage(int pin);
-{
+};
+
+#endif

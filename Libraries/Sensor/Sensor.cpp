@@ -9,7 +9,7 @@ int Sensor::ultrasound() 		// send ultrasound chirp & receive too (copied from D
 	// define variable
 	unsigned int T;
 	
-	pinmode(pin_ultrasound, OUTPUT);	 //Give a short LOW pulse beforehand to ensure a clean HIGH pulse:
+	pinMode(pin_ultrasound, OUTPUT);	 //Give a short LOW pulse beforehand to ensure a clean HIGH pulse:
 	digitalWrite(pin_ultrasound, LOW);
 	delayMicroseconds(2); //!!!!!!!!!!!!!!!!!!!!! we need to find another way for the delay function
 
@@ -37,13 +37,14 @@ int Sensor::ir_voltage(int pin)
 
 bool Sensor::ir_ground() // returns TRUE for black ground 
 {
-	int black_max = 600 // under this value the ground is percieved black
+	int black_max = 600; // under this value the ground is percieved black
+	int volt = Sensor::ir_voltage(pin_IR_ground);
 	
-	if(Sensor::ir_voltage(pin_IR_ground) < black_max){
-		return TRUE;
+	if(volt < black_max){
+		return true;
 	}
 	else{
-		return FALSE;
+		return false;
 	}
 }
 
