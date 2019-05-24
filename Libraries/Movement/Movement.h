@@ -10,6 +10,7 @@ class Move{
 		void drive(float amount);
 		void head(int angle);
 		void stop_drive();
+		void drive_c();
 
 	private:
 		static Servo wheel_right;

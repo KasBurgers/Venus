@@ -135,3 +135,10 @@ void Move::stop_drive()
 	wheel_left.detach();
   	wheel_right.detach();
 }
+
+void Move::drive_c(){ 		//drive forward continuos
+
+      wheel_left.write(1700);   //drive forwards
+      wheel_right.write(1300);  //drive backwards
+
+}
