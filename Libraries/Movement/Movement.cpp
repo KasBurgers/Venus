@@ -1,6 +1,6 @@
 #include <Servo.h>
 #include <math.h>
-#include "Definitions.h"
+#include "Definitions_move.h"
 #include "Movement.h"
 #include "Arduino.h"
 #include "Servo.h"
@@ -10,10 +10,12 @@
 //Attach servos
 Servo Move::wheel_right;
 Servo Move::wheel_left;
-Servo Move::head_s;
+Servo Move::Head;
 
 //Create int
+int Move::LEstatus;
 int Move::rotation = 0;
+int Move::state1, Move::state2;
 int Move::i = 0;
 float Move::distance = 0;
 
@@ -118,18 +120,25 @@ void Move::turn(float Degrees){
 void Move::head(int angle)	//forward is 90 degree angle, range is from 0 -> 180
 {
 	//attach servo
-	head_s.attach(pin_servo_head);
+	Head.attach(pin_servo_head);
 	
 	// move the head
-	head_s.write(angle);
+	Head.write(angle);
 	
 	// disengage
-	//head_s.detach();
+	Head.detach();
 }
 
-void Move::stop_d()
+void Move::stop_drive()
 {
 	//detach servo
 	wheel_left.detach();
   	wheel_right.detach();
+}
+
+void Move::drive_c(){ 		//drive forward continuos
+
+      wheel_left.write(1700);   //drive forwards
+      wheel_right.write(1300);  //drive backwards
+
 }
