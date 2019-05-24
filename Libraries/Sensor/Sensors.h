@@ -1,14 +1,16 @@
 #ifndef Sensors_h
 #define Sensors_h
-#include "Definitions.h"
+#include "Definitions_sensor.h"
 
 class Sensors{
 	public:
 		static int ultrasound();
-		bool ir_ground();
+		static bool ir_ground();
     static int ultrasoundReturn;
+    static bool ir_groundReturn;
 	private:
-		int ir_voltage(int pin);
+		static int ir_voltage(int pin);
+    static int voltage_ir;
 };
 
 #endif
