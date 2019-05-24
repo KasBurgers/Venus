@@ -30,8 +30,12 @@ int Sensors::ultrasound() 		// send ultrasound chirp & receive too (copied from 
 int Sensors::ir_voltage(int pin)
 {
 	// define constants
+	pinMode(pin, INPUT);
 	int VOLTAGE_MAX = 5000;
 	int VOLTAGE_STEP = VOLTAGE_MAX/1024;
+	int in = analogRead(pin);
+        int voltage_ir = in*VOLTAGE_STEP;
+        return voltage_ir;
 	
 	
 }
