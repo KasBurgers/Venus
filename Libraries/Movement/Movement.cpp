@@ -129,7 +129,7 @@ void Move::head(int angle)	//forward is 90 degree angle, range is from 0 -> 180
 	head.detach();
 }
 
-void Move::stop()
+void Move::stop_drive()
 {
 	//detach servo
 	wheel_left.detach();
