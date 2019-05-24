@@ -137,8 +137,10 @@ void Move::stop_drive()
 }
 
 void Move::drive_c(){ 		//drive forward continuos
-
-      wheel_left.write(1700);   //drive forwards
-      wheel_right.write(1300);  //drive backwards
+      
+      	wheel_left.attach(pin_wheel_left);
+	wheel_right.attach(pin_wheel_right);
+	wheel_left.write(1700);   //drive forwards
+        wheel_right.write(1300);  //drive backwards
 
 }
