@@ -9,4 +9,5 @@
 #define pin_wheel_left 12
 #define pin_wheel_right 13
 #define pin_IR_rock 100		
-#define pin_IR_ground 	101
+#define pin_ir_ground_1 1
+#define pin_ir_ground_2 2

@@ -30,13 +30,15 @@ int Sensors::ultrasound() 		// send ultrasound chirp & receive too (copied from 
 
 int Sensors::ir_voltage(int pin)
 {
-	// define constants
-	  pinMode(pin, INPUT);
-	  int VOLTAGE_MAX = 5000;
-	  int VOLTAGE_STEP = VOLTAGE_MAX/1024;
-	  int in = analogRead(pin);
-    Sensors::voltage_ir = in*VOLTAGE_STEP;
-    return Sensors::voltage_ir;
+	// activate pin
+	pinMode(pin, INPUT);
+
+  //define constants
+  int VOLTAGE_MAX = 5000;
+  int VOLTAGE_STEP = VOLTAGE_MAX/1024;
+
+  //return
+  return( analogRead(pin) * VOLTAGE_STEP );
 	
 	
 }
@@ -44,15 +46,14 @@ int Sensors::ir_voltage(int pin)
 
 bool Sensors::ir_ground() // returns TRUE for black ground 
 {
-	int black_max = 600; // under this value the ground is percieved black
-	int volt = Sensors::ir_voltage(pin_IR_ground);
-	
-	if(volt < black_max){
-		return true;
-	}
-	else{
-		return false;
-	}
+	//define black level
+	int black_max = 600; 
+  if (Sensors::ir_voltage(pin_ir_ground_1) < black_max or Sensors::ir_voltage(pin_ir_ground_2) < black_max){
+    return true;
+  }
+  else{
+    return false;
+  }
 }
 
 
