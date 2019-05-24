@@ -10,12 +10,10 @@
 //Attach servos
 Servo Move::wheel_right;
 Servo Move::wheel_left;
-Servo Move::head;
+Servo Move::head_s;
 
 //Create int
-int Move::LEstatus;
 int Move::rotation = 0;
-int Move::state1, Move::state2;
 int Move::i = 0;
 float Move::distance = 0;
 
@@ -120,25 +118,18 @@ void Move::turn(float Degrees){
 void Move::head(int angle)	//forward is 90 degree angle, range is from 0 -> 180
 {
 	//attach servo
-	head.attach(pin_servo_head);
+	head_s.attach(pin_servo_head);
 	
 	// move the head
-	head.write(angle);
+	head_s.write(angle);
 	
 	// disengage
-	head.detach();
+	//head_s.detach();
 }
 
-void Move::stop_drive()
+void Move::stop_d()
 {
 	//detach servo
 	wheel_left.detach();
   	wheel_right.detach();
-}
-
-void Move::drive_c(){ 		//drive forward continuos
-
-      wheel_left.write(1700);   //drive forwards
-      wheel_right.write(1300);  //drive backwards
-
 }
