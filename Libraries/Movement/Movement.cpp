@@ -18,6 +18,7 @@ int Move::rotation = 0;
 int Move::state1, Move::state2;
 int Move::i = 0;
 float Move::distance = 0;
+int Move::headAngle = 0;
 
 
 
@@ -124,6 +125,8 @@ void Move::head(int angle)	//forward is 90 degree angle, range is from 0 -> 180
 	
 	// move the head
 	Head.write(angle);
+	headAngle = angle;
+	
 	
 	// disengage
 	Head.detach();
@@ -143,4 +146,9 @@ void Move::drive_c(){ 		//drive forward continuos
 	wheel_left.write(1700);   //drive forwards
         wheel_right.write(1300);  //drive backwards
 
+}
+
+int Move::headStatus()
+{
+  return headAngle;
 }
