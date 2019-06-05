@@ -10,8 +10,8 @@ class Sensors{
     static int ultrasoundReturn;
     static bool ir_ground_return_left;
     static bool ir_ground_return_right;
-	static bool ir_trunk();
-	static bool ir_trunk_return;
+	  static bool ir_trunk();
+	  static bool ir_trunk_return;
 	
     private:
     static int ir_voltage(int pin);

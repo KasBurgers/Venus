@@ -7,6 +7,7 @@ int Sensors::ultrasoundReturn;
 static int Sensors::voltage_ir;
 bool Sensors::ir_ground_return_right;
 bool Sensors::ir_ground_return_left;
+bool Sensors::ir_trunk_return;
 
 int Sensors::ultrasound() 		// send ultrasound chirp & receive too (copied from Dwahni (20 May)
 {
