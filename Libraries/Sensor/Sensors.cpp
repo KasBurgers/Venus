@@ -4,9 +4,7 @@
 
 // create construct
 int Sensors::ultrasoundReturn;
-static int Sensors::voltage_ir;
-bool Sensors::ir_ground_return_right;
-bool Sensors::ir_ground_return_left;
+int Sensors::voltage_ir;
 
 int Sensors::ultrasound() 		// send ultrasound chirp & receive too (copied from Dwahni (20 May)
 {
@@ -50,12 +48,13 @@ bool Sensors::ir_ground_left() // returns TRUE for black ground
 {
 	//define black level
 	int black_max = 600; 
+
   if (Sensors::ir_voltage(pin_ir_ground_1) < black_max){
-     ir_ground_return_left=true;
+     bool ir_ground_return_left=true;
      return ir_ground_return_left;
   }
   else{
-     ir_ground_return_left=false;
+     bool ir_ground_return_left=false;
      return ir_ground_return_left;
   }
 }
@@ -65,17 +64,30 @@ bool Sensors::ir_ground_right() // returns TRUE for black ground
 	int black_max = 600; 
  
     if(Sensors::ir_voltage(pin_ir_ground_2) < black_max){
-    ir_ground_return_right=true;
+    bool ir_ground_return_right=true;
     return ir_ground_return_right;
   }
   
   else{
-       ir_ground_return_right=false;
+       bool ir_ground_return_right=false;
        return ir_ground_return_right;
   }
 }
 
+bool Sensors::ir_trunk(){ //returns True for value > 1200mV
 
+  int white_v= 1200;
+
+  if(Sensors::ir_voltage(pin_ir_trunk)>=white_v){
+      bool ir_trunk_return=true;
+      return ir_trunk_return; }
+
+  else{
+      bool ir_trunk_return=false;
+      return ir_trunk_return;
+    
+  }
+}
 	
 	
 	
