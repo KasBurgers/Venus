@@ -12,6 +12,7 @@ class Move{
 		void head(int angle);
 		static void stop_drive();
 		static void drive_c();
+		static int headStatus();
 
 	private:
 		static Servo wheel_right;
@@ -22,6 +23,7 @@ class Move{
 		static int state1, state2;
 		static int i;
 		static float distance;
+		static int headAngle;
 		
 		
 };
