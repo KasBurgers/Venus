@@ -11,4 +11,5 @@
 #define pin_IR_rock 100		
 #define pin_ir_ground_1 1
 #define pin_ir_ground_2 2
+#define pin_ir_trunk 3
 #define pin_servo_grabber 10

@@ -1,13 +1,26 @@
-// Main includes
 #include "Definitions_sensor.h"
-//#include "Movement.h"
+#include "Sensors.h"
+#include "Movement.h"
 
-//Move move1;
+Move move_t;
+Sensors sensor_t;
+int z;
+
+
 void setup() {
-  // put your setup code here, to run once:
 
+Serial.begin(9600);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+
+
+if(sensor_t.ir_trunk()==true){
+  move_t.drive_c();
+  delay(500);
+  move_t.stop_drive();
+}
+
+//z=sensor_t.ir_voltage(pin_ir_trunk);
+//Serial.println(z);
 }
