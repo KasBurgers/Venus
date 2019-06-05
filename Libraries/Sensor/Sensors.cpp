@@ -44,32 +44,15 @@ int Sensors::ir_voltage(int pin)
 }
 
 
-bool Sensors::ir_ground_left() // returns TRUE for black ground 
+bool Sensors::ir_ground() // returns TRUE for black ground 
 {
 	//define black level
 	int black_max = 600; 
-  if (Sensors::ir_voltage(pin_ir_ground_1) < black_max){
-     ir_ground_return_left=true;
-     return ir_ground_return_left;
+  if (Sensors::ir_voltage(pin_ir_ground_1) < black_max or Sensors::ir_voltage(pin_ir_ground_2) < black_max){
+    return true;
   }
   else{
-     ir_ground_return_left=false;
-     return ir_ground_return_left;
-  }
-}
-bool Sensors::ir_ground_right() // returns TRUE for black ground 
-{
-	//define black level
-	int black_max = 600; 
- 
-    if(Sensors::ir_voltage(pin_ir_ground_2) < black_max){
-    ir_ground_return_right=true;
-    return ir_ground_return_right;
-  }
-  
-  else{
-       ir_ground_return_right=false;
-       return ir_ground_return_right;
+    return false;
   }
 }
 
