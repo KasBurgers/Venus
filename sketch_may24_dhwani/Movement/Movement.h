@@ -7,9 +7,9 @@
 
 class Move{
 	public:
-		static void turn(float amount);
-		static void drive(float amount);
-		static void head(int angle);
+		void turn(float amount);
+		void drive(float amount);
+		void head(int angle);
 		static void stop_drive();
 		static void drive_c();
 		static int headStatus();
