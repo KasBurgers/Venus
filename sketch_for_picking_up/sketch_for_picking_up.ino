@@ -2,6 +2,7 @@
 #include "Movement.h"
 #include <Servo.h>
 #include "Grabber.h"
+#include "Sensors.h"
 
 //DEFINE
 //define grabber
@@ -13,10 +14,13 @@ Move movement;
 int headStatus = 0;
 int turn = 0;
 
+Sensors mySensor;
+
 void setup() {
 }
 
 void loop() {
+delay(5000);
 sampleDetected(); 
 
 }
@@ -24,6 +28,7 @@ sampleDetected();
 void sampleDetected(){
   movement.stop_drive();
   headStatus = movement.headStatus;
+  myGrabber.open();
   
   if (headStatus <= 90){ // its needed to turn left
     int turn = -(90-headStatus);  // a negative movement.turn() will cause the robot to turn left
