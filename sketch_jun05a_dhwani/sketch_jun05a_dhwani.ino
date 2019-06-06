@@ -3,14 +3,11 @@
 #include <Movement.h>
 
 int dist;                       //distance of rover from the obstacle
+int n = 90;                     //angle of the head
 
 void setup() {
  Serial.begin(9600);
-// Sensors::ultrasound();
- Move::head(90);
-// Move::drive_c();
-// delay(500);
-// Move::stop_drive();
+ Move::head(n);
 }
 
 void save_obstacle_in_memory()
