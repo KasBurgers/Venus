@@ -29,7 +29,7 @@ void sampleDetected(){
   movement.stop_drive();
   headStatus = movement.headStatus;
   myGrabber.open();
-  
+  delay(1000);
   if (headStatus <= 90){ // its needed to turn left
     int turn = -(90-headStatus);  // a negative movement.turn() will cause the robot to turn left
     movement.turn(turn);
