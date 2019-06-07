@@ -32,15 +32,17 @@ void ir_ground(){
   }
   if(ir_left == true & ir_right == false){
     Move::stop_drive();
-    Move::turn(45);
-    rotation = rotation + 45;
+    Move::drive(-1);
+    Move::turn(90);
+    rotation = rotation + 90;
     //save to memory
     Move::drive_c();
   }
     if(ir_right == true & ir_left == false){
     Move::stop_drive();
-    Move::turn(-45);
-    rotation = rotation - 45; 
+    Move::drive(-1);
+    Move::turn(-90);
+    rotation = rotation - 90; 
     //save to memory
     Move::drive_c();
   }
