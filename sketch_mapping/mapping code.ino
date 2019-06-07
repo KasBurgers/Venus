@@ -209,38 +209,21 @@ steps:
 		- blocked again? turn again and turn back when possible to perform step 1
 */
 
-int x_start = coor[0];
-int y_start = coor[1];
-int tempx = x_start;	//virtual x-coor
-int tempy = y_start;	//virtual y-coor
+int tempx = coor[0];	//virtual x-coor
+int tempy = coor[1];	//virtual y-coor
 bool focusY = false;
 int block = 0;
 
 
+//we need to add to the drive() function that when it sensors a line, it drives back to the starting position!!!!!!!!!!!!!!!!!!
+
+
+
 if (focusY == false) {
-	if (x_start > 0) {
+	if (tempx > 0) {
 		//coor[2] needs to be 270
 		for (int i = 0; i < 100; i++) {
-			if ((tempx-i,tempy) is in array 'obstacles') or (tempx-i == 0) {
-				focusY = true;
-				if (block == 2) {
-					do the 'blocked again' action
-					block = 0;
-				}
-				block = 1;
-				break; //go to code to focus on y to 0
-			}
-			else {
-				add (tempx-i,tempy) to array 'route';
-				tempx = tempx-i;
-				block = 0;
-			}
-		}
-	}
-	else if (x_start < 0) {
-		//coor[2] needs to be 90
-		for (int i = 0; i < 100; i++) {
-			if ((tempx+i,tempy) is in array 'obstacles') or (tempx+i == 0) {
+			if ((tempx-i,tempy) is a mountain) or (tempx-i == 0) {
 				focusY = true;
 				if (block == 2) {
 					//do the 'blocked again' action
@@ -250,28 +233,46 @@ if (focusY == false) {
 				break; //go to code to focus on y to 0
 			}
 			else {
-				add (tempx+i,tempy) to array 'route';
+				drive(1.35);
+				block = 0;
+			}
+		}
+	}
+	else if (tempx < 0) {
+		//coor[2] needs to be 90
+		for (int i = 0; i < 100; i++) {
+			if ((tempx+i,tempy) is a mountain) or (tempx+i == 0) {
+				focusY = true;
+				if (block == 2) {
+					//do the 'blocked again' action
+					block = 0;
+				}
+				block = 1;
+				break; //go to code to focus on y to 0
+			}
+			else {
+				drive(1.35);
 				tempx = tempx+i;
 				block = 0;
 			}
 		}
 	}
-	else if (x_start == 0) {
-		if (y_start == 0) {
+	else if (tempx == 0) {
+		if (tempy == 0) {
 			//at the lab, so coor[2] needs to be 0
 		}
 		else {
-			//coor[2] needs to be based on y_start
+			//coor[2] needs to be based on tempy
 			focusY = true;
 		}
 	}
 }
 
 if (focusY == true) {
-	if (y_start > 0) {
+	if (tempy > 0) {
 		//coor[2] needs to be 180
 		for (int i = 0; i < 100; i++) {
-			if ((tempx,tempy-i) is in array 'obstacles') or (tempy-i == 0) {
+			if ((tempx,tempy-i) is a mountain) or (tempy-i == 0) {
 				focusY = false;
 				if (block == 2) {
 					//do the 'blocked again' action
@@ -281,16 +282,16 @@ if (focusY == true) {
 				break; //go to code to focus on y to 0
 			}
 			else {
-				add (tempx,tempy-i) to array 'route';
+				drive(1.35);
 				tempy = tempy-i;
 				block = 0;
 			}
 		}
 	}
-	else if (y_start < 0) {
+	else if (tempy < 0) {
 		//coor[2] needs to be 0
 		for (int i = 0; i < 100; i++) {
-			if ((tempx,tempy+i) is in array 'obstacles') or (tempy+i == 0) {
+			if ((tempx,tempy+i) is a mountain) or (tempy+i == 0) {
 				focusY = false;
 				if (block == 2) {
 					//do the 'blocked again' action
@@ -300,7 +301,7 @@ if (focusY == true) {
 				break; //go to code to focus on y to 0
 			}
 			else {
-				add (tempx,tempy+i) to array 'route';
+				drive(1.35);
 				tempy = tempy+i;
 				block = 0;
 			}
@@ -309,10 +310,10 @@ if (focusY == true) {
 }
 
 /*
-else if (y_start == 0) {
-	if (x_start == 0) {
+else if (tempy == 0) {
+	if (tempx == 0) {
 		//at the lab, so coor[2] needs to be 0
 	}
-	//coor[2] needs to be based on x_start
+	//coor[2] needs to be based on tempx
 }
 */
