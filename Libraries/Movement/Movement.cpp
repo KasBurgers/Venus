@@ -127,9 +127,7 @@ void Move::head(int angle)	//forward is 90 degree angle, range is from 0 -> 180
 	Head.write(angle);
 	headAngle = angle;
 	
-	
-	// disengage
-	Head.detach();
+
 }
 
 void Move::stop_drive()
