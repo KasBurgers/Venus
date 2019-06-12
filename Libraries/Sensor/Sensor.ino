@@ -9,18 +9,18 @@ int z;
 
 void setup() {
 
-Serial.begin(9600);
+Move::stop_drive();
+Move::drive_c();
+
 }
 
 void loop() {
 
-
-if(sensor_t.ir_trunk()==true){
-  //move_t.drive_c();
-  delay(500);
-  //move_t.stop_drive();
-}
-
-//z=sensor_t.ir_voltage(pin_ir_trunk);
-//Serial.println(z);
+  if(ir_left == true & ir_right == false){
+    Move::stop_drive();
+    Move::turn(25);
+    rotation = rotation + 45;
+    //save to memory
+    Move::drive_c();
+  }
 }
