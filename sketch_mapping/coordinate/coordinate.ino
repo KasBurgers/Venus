@@ -1,4 +1,4 @@
-int coor[] = {0, 0, 0}	//{Xcoor, Ycoor, dir}
+int coor[] = {0, 0, 0};	//{Xcoor, Ycoor, dir}
 dir = coor[2];
 bool blackLine = false;
 //int degrees;
@@ -7,8 +7,12 @@ void setup()
 {
 	
 }
-
 void loop()
+{
+  
+}
+
+void checkOrientation()
 {
 	blackLine = move::new_drive(1.35);
 	if (blackLine == true) {

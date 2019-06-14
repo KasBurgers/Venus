@@ -13,6 +13,8 @@ class Move{
 		static void stop_drive();
 		static void drive_c();
 		static int headStatus();
+		static bool new_drive();
+		static bool blackLine;
 
 	private:
 		static Servo wheel_right;
