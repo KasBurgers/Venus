@@ -12,6 +12,7 @@ void loop() {
   // put your main code here, to run repeatedly:
   Grabber::open();
   delay(5000);
+  Serial.print("closed");
   Grabber::close();
   delay(5000);
 }
