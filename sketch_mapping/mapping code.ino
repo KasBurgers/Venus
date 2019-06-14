@@ -223,7 +223,7 @@ if (focusY == false) {
 	if (tempx > 0) {
 		//coor[2] needs to be 270
 		for (int i = 0; i < 100; i++) {
-			if ((tempx-i,tempy) is a mountain) or (tempx-i == 0) {
+			if ((tempx-i,tempy) is a mountain) or (tempx-i == -1) {
 				focusY = true;
 				if (block == 2) {
 					//do the 'blocked again' action
@@ -241,7 +241,7 @@ if (focusY == false) {
 	else if (tempx < 0) {
 		//coor[2] needs to be 90
 		for (int i = 0; i < 100; i++) {
-			if ((tempx+i,tempy) is a mountain) or (tempx+i == 0) {
+			if ((tempx+i,tempy) is a mountain) or (tempx+i == 1) {
 				focusY = true;
 				if (block == 2) {
 					//do the 'blocked again' action
@@ -272,7 +272,7 @@ if (focusY == true) {
 	if (tempy > 0) {
 		//coor[2] needs to be 180
 		for (int i = 0; i < 100; i++) {
-			if ((tempx,tempy-i) is a mountain) or (tempy-i == 0) {
+			if ((tempx,tempy-i) is a mountain) or (tempy-i == -1) {
 				focusY = false;
 				if (block == 2) {
 					//do the 'blocked again' action
@@ -291,7 +291,7 @@ if (focusY == true) {
 	else if (tempy < 0) {
 		//coor[2] needs to be 0
 		for (int i = 0; i < 100; i++) {
-			if ((tempx,tempy+i) is a mountain) or (tempy+i == 0) {
+			if ((tempx,tempy+i) is a mountain) or (tempy+i == -1) {
 				focusY = false;
 				if (block == 2) {
 					//do the 'blocked again' action
