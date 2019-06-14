@@ -230,34 +230,7 @@ bool mountain() {
 
 
 
-
-
-
-
-
-
-
-
-
-
 //-----------------------------------------------------------------------------------------------------------------------------------------------//
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -275,7 +248,7 @@ bool driveReturn = false;
 
 void setup() {
 	dir = direction(Xcoor, Ycoor, false);	
-	turn(dir-coor[2]);
+	Move::turn(dir-coor[2]);
 	coor[2] = dir;
 }
 
@@ -286,7 +259,7 @@ void loop() {
 				Xblocked();
 			}
 			else {
-				driveReturn = drive(1.35);
+				driveReturn = Move::new_drive(1.35);
 				if (driveReturn == true) {
 					Xblocked();
 				}
@@ -301,7 +274,7 @@ void loop() {
 				Xblocked();
 			}
 			else {
-				driveReturn = drive(1.35);
+				driveReturn = Move::new_drive(1.35);
 				if (driveReturn == true) {
 					Xblocked();
 				}
@@ -315,12 +288,13 @@ void loop() {
 			if (Ycoor == 0) {
 				//at the lab
 				dir=0;
-				turn(dir-coor[2]);
+				Move::turn(dir-coor[2]);
 				coor[2] = dir;
 				//done
 			}
 			else {
 				Xblocked();
+				blockedStatus = 0;	//this will make sure the zero line won't look like a mountain or a black line.
 			}
 		}
 	}
@@ -332,7 +306,7 @@ void loop() {
 				Yblocked();
 			}
 			else {
-				driveReturn = drive(1.35);
+				driveReturn = Move::new_drive(1.35);
 				if (driveReturn == true) {
 					Yblocked();
 				}
@@ -347,7 +321,7 @@ void loop() {
 				Yblocked();
 			}
 			else {
-				driveReturn = drive(1.35);
+				driveReturn = Move::new_drive(1.35);
 				if (driveReturn == true) {
 					Yblocked();
 				}
@@ -361,12 +335,13 @@ void loop() {
 			if (Xcoor == 0) {
 				//at the lab
 				dir=0;
-				turn(dir-coor[2]);
+				Move::turn(dir-coor[2]);
 				coor[2] = dir;
 				//done
 			}
 			else {
 				Yblocked();
+				blockedStatus = 0;	//this will make sure the zero line won't look like a mountain or a black line.
 			}
 		}
 	}
@@ -374,6 +349,7 @@ void loop() {
 
 
 void Xblocked() {
+	bool case2 = true;
 	//vars: blockedStatus (return), focusY, Xcoor/Ycoor/coor[2], blockedTurn
 	switch (blockedStatus) {
 	    case 0:		//first time blocked;
@@ -381,18 +357,18 @@ void Xblocked() {
 	    	blockedStatus++;
 	    	dir = direction(Xcoor, Ycoor, focusY);
 	    	blockedTurn = dir-coor[2];
-	    	turn(blockedTurn);
+	    	Move::turn(blockedTurn);
 	    	coor[2] = dir;
 	    	break;
 	    case 1:		//second time blocked
 		    blockedStatus++;
-		    turn(blockedTurn);
+		    Move::turn(blockedTurn);
 		    
 	    	while (case2 == true) {
-	    		drive(1.35);
-	    		turn(-blockedTurn);
+	    		Move::drive(1.35);
+	    		Move::turn(-blockedTurn);
 	    		if (mountain() == true) {
-	    			turn(blockedTurn);
+	    			Move::turn(blockedTurn);
 	    		}
 	    		else {
 	    			case2 = false;
@@ -412,17 +388,17 @@ void Yblocked() {
 	    	blockedStatus++;
 	    	dir = direction(Xcoor, Ycoor, focusY);
 	    	blockedTurn = dir-coor[2];
-	    	turn(blockedTurn);
+	    	Move::turn(blockedTurn);
 	    	coor[2] = dir;
 	    	break;
 	    case 1:		//second time blocked
-		    turn(blockedTurn);
+		    Move::turn(blockedTurn);
 		    
 	    	while (case2 == true) {
-	    		drive(1.35);
-	    		turn(-blockedTurn);
+	    		Move::drive(1.35);
+	    		Move::turn(-blockedTurn);
 	    		if (mountain() == true) {
-	    			turn(blockedTurn);
+	    			Move::turn(blockedTurn);
 	    		}
 	    		else {
 	    			case2 = false;
