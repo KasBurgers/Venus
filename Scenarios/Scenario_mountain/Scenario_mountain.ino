@@ -7,7 +7,6 @@ int n = 90;                     //angle of the head
 
 void setup() {
  Serial.begin(9600);
- Move::head(90);
  delay(100);
 }
 
