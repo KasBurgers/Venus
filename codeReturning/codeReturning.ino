@@ -22,7 +22,7 @@ used functions:
  - turn()
  - 
 ---------------------------------------------------------------------------*/
-int coor[] = {0, 0, 0};	//{x, y, dir}
+/*int coor[] = {0, 0, 0};	//{x, y, dir}
 bool focusY = false;
 int Xcoor = coor[0];
 int Ycoor = coor[1];
@@ -225,7 +225,7 @@ bool mountain() {
 	else {
 		return false;
 	}
-}
+}*/
 
 
 
@@ -247,7 +247,7 @@ int blockedTurn;
 bool driveReturn = false;
 
 void setup() {
-	dir = direction(Xcoor, Ycoor, false);	
+	dir = direction1(Xcoor, Ycoor, false);	
 	Move::turn(dir-coor[2]);
 	coor[2] = dir;
 }
@@ -355,7 +355,7 @@ void Xblocked() {
 	    case 0:		//first time blocked;
 	    	focusY = true;
 	    	blockedStatus++;
-	    	dir = direction(Xcoor, Ycoor, focusY);
+	    	dir = direction1(Xcoor, Ycoor, focusY);
 	    	blockedTurn = dir-coor[2];
 	    	Move::turn(blockedTurn);
 	    	coor[2] = dir;
@@ -386,7 +386,7 @@ void Yblocked() {
 	    case 0:		//first time blocked;
 	    	focusY=false;
 	    	blockedStatus++;
-	    	dir = direction(Xcoor, Ycoor, focusY);
+	    	dir = direction1(Xcoor, Ycoor, focusY);
 	    	blockedTurn = dir-coor[2];
 	    	Move::turn(blockedTurn);
 	    	coor[2] = dir;
@@ -411,7 +411,7 @@ void Yblocked() {
 	}
 }
 
-int direction(int Xcoor, int Ycoor, bool focusY) {
+int direction1(int Xcoor, int Ycoor, bool focusY) {
 	int dirX;
 	int dirY;
 	if (Xcoor > 0) {
