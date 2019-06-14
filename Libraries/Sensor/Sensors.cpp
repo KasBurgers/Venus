@@ -78,7 +78,7 @@ bool Sensors::ir_ground_right() // returns TRUE for black ground
 
 bool Sensors::ir_trunk(){ //returns True for value > 1200mV
 
-  int white_v= 1200;
+  int white_v= 300;
 
   if(Sensors::ir_voltage(pin_ir_trunk)>=white_v){
       ir_trunk_return=true;
