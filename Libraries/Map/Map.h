@@ -11,6 +11,7 @@ class Map{
     static int findDir();
     static void blocked();
     static bool mountain();
+    static void test();
     
     //variables
     static int robotPosition[4];
