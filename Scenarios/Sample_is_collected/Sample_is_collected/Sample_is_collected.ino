@@ -29,7 +29,7 @@ void drop_sample() {
     bool ir_right = false;
     bool cond=false;
     int back_at_lab=1;
-    float d_ramp=3.7;
+    float d_ramp=3.6;
     float d_on_ramp=0.5;
     float dist=0;
     float d_droven=0;
@@ -39,7 +39,10 @@ void drop_sample() {
   if (back_at_lab==1 & z==0){ //back_at_lab condition should be taken from mapping code
     
     //testing code
+    myGrabber.open();
+    delay(1500);
     myGrabber.close();
+    delay(2500);
   
     //define ir sensors
     ir_left = Sensors::ir_ground_left();
