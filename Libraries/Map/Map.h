@@ -2,15 +2,32 @@
 #define Map_h
 
 class Map{
-	public:
-		static void addObstacle();
-		static int obstacles[30][2];
-		static void updateRobotLoc();
-		static void updateRobotDir(int amount);
-		static int robotPosition[3];
+  public:
+    //functions
+	  static void addObstacle();
+	  static void updateRobotLoc();
+	  static void updateRobotDir(int amount);
+    static void returnLab();
+    static int findDir();
+    static void blocked();
+    static bool mountain();
+    
+    //variables
+    static int robotPosition[4];
+    static int obstacles[30][3];
+    static int labPosition[3];
+    static int returnDir;
+    static int blockedStatus;
+    static bool focusY;
+    static int blockedTurn;
+    
 	private:
+    //variables
 		static int Xcoordinate;
 		static int Ycoordinate;
-		static int dir;
+		static int directionInt;
+
+    
+    
 };
 #endif

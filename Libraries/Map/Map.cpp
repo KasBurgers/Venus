@@ -6,7 +6,7 @@
 // create construct
 int Map::Xcoordinate = 0;
 int Map::Ycoordinate = 1;
-int Map::dir = 2;
+int Map::directionInt = 2;
 
 void Map::addObstacle(){ 
   
@@ -34,7 +34,7 @@ void Map::addObstacle(){
 void Map::updateRobotLoc(){
   // call this function in main whenever a new gridspace is reached
   // thus in the main function there needs to be the encoder check for knowing how far we've driven
-   switch ( Map::robotPosition[Map::dir] ) {
+   switch ( Map::robotPosition[Map::directionInt] ) {
     case 0: //north
       Map::robotPosition[Map::Xcoordinate] += 1;
       break;
@@ -51,13 +51,179 @@ void Map::updateRobotLoc(){
 }
 
 void Map::updateRobotDir(int amount){
-	Map:robotPosition[Map::dir] += amount;
+	Map:robotPosition[Map::directionInt] += amount;
 	
-	if (Map::robotPosition[Map::dir] >= 360){
-		Map::robotPosition[Map::dir] -= 360;
+	if (Map::robotPosition[Map::directionInt] >= 360){
+		Map::robotPosition[Map::directionInt] -= 360;
 	}
-	if (Map::robotPosition[Map::dir] < 0){
-		Map::robotPosition[Map::dir] += 360;
+	if (Map::robotPosition[Map::directionInt] < 0){
+		Map::robotPosition[Map::directionInt] += 360;
 	}
 }
-	
+
+bool Map::mountain() {
+  #include "Sensors.h";
+  
+  int mountainDistance = Sensors::ultrasound();
+  if (mountainDistance < 40) {
+    return true;
+  }
+  else {
+    return false;
+  }
+}
+
+void Map::returnLab(){
+  Map::focusY = false;
+  int driveReturn;
+  int dir = Map::findDir();
+  Move::turn(dir-Map::robotPosition[2]);
+  
+  while(Map::robotPosition[0] != 0 && Map::robotPosition[1] != 0){
+     if (Map::focusY == false){
+      if(Map::robotPosition[0] > 0) {
+        if (Map::mountain() == true) {
+          Map::blocked();
+        }
+        else{
+          driveReturn = Move::drive_new(1.35);
+          if (driveReturn == true) {
+            Map::blocked(); 
+          }
+          else {
+            Map::blockedStatus = 0;
+            Map::robotPosition[0]--;
+          }
+        }
+      }
+      if (Map::robotPosition[0] > 0) {
+        if (Map::mountain() == true) {
+          Map::blocked();
+        }
+        else{
+          driveReturn = Move::drive_new(1.35);
+          if (driveReturn == true) {
+            Map::blocked(); 
+          }
+          else {
+            Map::blockedStatus = 0;
+            Map::robotPosition[0]++;
+          }
+        }
+      }
+    }
+    if (Map::focusY == true){
+      if(Map::robotPosition[1] > 0) {
+        if (Map::mountain() == true) {
+          Map::blocked();
+        }
+        else{
+          driveReturn = Move::drive_new(1.35);
+          if (driveReturn == true) {
+            Map::blocked(); 
+          }
+          else {
+            Map::blockedStatus = 0;
+            Map::robotPosition[1]--;
+          }
+        }
+      }
+      if (Map::robotPosition[1] > 0) {
+        if (Map::mountain() == true) {
+          Map::blocked();
+        }
+        else{
+          driveReturn = Move::drive_new(1.35);
+          if (driveReturn == true) {
+            Map::blocked(); 
+          }
+          else {
+            Map::blockedStatus = 0;
+            Map::robotPosition[1]++;
+          }
+        }
+      }
+    }
+  }
+  if (Map::robotPosition[0] == 0 && Map::robotPosition[1] == 0){
+    //at the lab
+    dir=180;
+    Move::turn(dir-Map::robotPosition[2]);
+    Map::robotPosition[2] = dir;
+  }
+}
+
+int Map::findDir(){
+  if (Map::focusY) {
+    
+    if (Map::robotPosition[1] > 0) {
+      Map::returnDir = 180;
+    }
+    else if (Map::robotPosition[1] < 0) {
+      Map::returnDir = 0;
+    }
+    else if (Map::robotPosition[1] == 0) {
+      int randm = random(0,2);
+      if (randm == 0) {
+        Map::returnDir = 0;
+      }
+      else {
+      Map::returnDir = 180;
+      }
+    }
+  }
+  else {
+    if (Map::robotPosition[0] > 0) {
+    Map::returnDir = 270;
+    }
+    else if (Map::robotPosition[0] < 0) {
+      Map::returnDir = 90;
+    }
+    else if (Map::robotPosition[0] == 0) {
+      int randm = random(0,2);
+      if (randm == 0) {
+        Map::returnDir = 270;
+      }
+      else {
+        Map::returnDir = 90;
+      }
+    }
+  }
+  return(Map::returnDir);
+}
+
+void Map::blocked() { //when it is blocked in front 
+  switch (Map::blockedStatus) {
+      case 0:   //first time blocked;
+      
+        if (Map::focusY){
+          Map::focusY = false;
+        }
+        else{
+          Map::focusY = true;
+        }
+        
+        Map::blockedStatus++;
+        int dir = Map::findDir();
+        Map::blockedTurn = dir-Map::robotPosition[2];
+        Move::turn(Map::blockedTurn);
+        Map::robotPosition[2] = dir;
+        break;
+      case 1:   //second time blocked
+        Map::blockedStatus++;
+        Move::turn(blockedTurn);
+        
+        while (true) {
+          Move::drive(1.35);
+          Move::turn(-Map::blockedTurn);
+          if (mountain() == true) {
+            Move::turn(Map::blockedTurn);
+          }
+          else {
+            break;
+          }
+        }
+        break;
+  }
+  
+}
