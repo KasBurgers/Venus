@@ -4,6 +4,7 @@
 #include "Movement.h"
 #include "Arduino.h"
 #include "Servo.h"
+#include "Sensors.h"
 
 //create construct
 
@@ -151,7 +152,7 @@ int Move::headStatus()
   return headAngle;
 }
 
-bool Move::drive(float amount){    //amount = the amount of rotations of the wheels
+bool Move::drive_new(float amount){    //amount = the amount of rotations of the wheels
 
    //enable encoders
   pinMode(pin_encoder_left, INPUT);
@@ -173,7 +174,7 @@ bool Move::drive(float amount){    //amount = the amount of rotations of the whe
 	wheel_right.attach(pin_wheel_right);
   	
   while((count1 < calculation1) and (count2 < calculation1)) {  
-    if ((ir_ground_left() == true) or (ir_ground_right() == true)) {  //library used
+    if ((Sensors::ir_ground_left() == true) or (Sensor::ir_ground_right() == true)) {  //library used
       while(count1 != 0) and (count2 != 0) {
         value_now1 = digitalRead(7);
         value_now2 = digitalRead(8);

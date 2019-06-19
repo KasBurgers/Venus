@@ -15,6 +15,7 @@ class Move{
 		static int headStatus();
 		static bool new_drive();
 		static bool blackLine;
+    static bool drive_new(float amount);
 
 	private:
 		static Servo wheel_right;
