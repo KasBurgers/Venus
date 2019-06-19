@@ -88,7 +88,7 @@ bool Move::drive(float amount){    //amount = the amount of rotations of the whe
   int value_now1;
   int value_now2;
   float calculation1 = abs(round(amount*15));   //calculates the amount of value-changes
-  int blackLine = false;  //only new variable
+  bool blackLine = false;  //only new variable
 	
 	//attach wheels
 	wheel_left.attach(pin_wheel_left);
