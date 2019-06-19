@@ -174,8 +174,8 @@ bool Move::drive_new(float amount){    //amount = the amount of rotations of the
 	wheel_right.attach(pin_wheel_right);
   	
   while((count1 < calculation1) and (count2 < calculation1)) {  
-    if ((Sensors::ir_ground_left() == true) or (Sensor::ir_ground_right() == true)) {  //library used
-      while(count1 != 0) and (count2 != 0) {
+    if ((Sensors::ir_ground_left() == true) or (Sensors::ir_ground_right() == true)) {  //library used
+      while(count1 != 0 && count2 != 0) {
         value_now1 = digitalRead(7);
         value_now2 = digitalRead(8);
         if(amount >= 0) {
