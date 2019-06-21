@@ -83,7 +83,8 @@ bool Map::mountain() {
 void Map::returnLab(){
   Map::focusY = false;
   int driveReturn;
-  int dir = Map::findDir();
+  int dir;
+  dir = Map::findDir();
   Move::turn(dir-Map::robotPosition[2]);
   
   while(Map::robotPosition[0] != 0 && Map::robotPosition[1] != 0){
@@ -200,6 +201,7 @@ int Map::findDir(){
 }
 
 void Map::blocked() { //when it is blocked in front 
+  int mark;
   switch (Map::blockedStatus) {
       case 0:   //first time blocked;
       
@@ -211,10 +213,10 @@ void Map::blocked() { //when it is blocked in front
         }
         
         Map::blockedStatus++;
-        int dir = Map::findDir();
-        Map::blockedTurn = dir-Map::robotPosition[2];
+        mark = Map::findDir();
+        Map::blockedTurn = mark-Map::robotPosition[2];
         Move::turn(Map::blockedTurn);
-        Map::robotPosition[2] = dir;
+        Map::robotPosition[2] = mark;
         break;
       case 1:   //second time blocked
         Map::blockedStatus++;

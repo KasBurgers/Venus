@@ -245,6 +245,7 @@ int dir;
 int blockedStatus = 0;
 int blockedTurn;
 bool driveReturn = false;
+bool case2 = true;
 
 void setup() {
 	dir = direction1(Xcoor, Ycoor, false);	
@@ -259,7 +260,7 @@ void loop() {
 				Xblocked();
 			}
 			else {
-				driveReturn = Move::new_drive(1.35);
+				driveReturn = Move::drive_new(1.35);
 				if (driveReturn == true) {
 					Xblocked();
 				}
@@ -274,7 +275,7 @@ void loop() {
 				Xblocked();
 			}
 			else {
-				driveReturn = Move::new_drive(1.35);
+				driveReturn = Move::drive_new(1.35);
 				if (driveReturn == true) {
 					Xblocked();
 				}
@@ -306,7 +307,7 @@ void loop() {
 				Yblocked();
 			}
 			else {
-				driveReturn = Move::new_drive(1.35);
+				driveReturn = Move::drive_new(1.35);
 				if (driveReturn == true) {
 					Yblocked();
 				}
@@ -321,7 +322,7 @@ void loop() {
 				Yblocked();
 			}
 			else {
-				driveReturn = Move::new_drive(1.35);
+				driveReturn = Move::drive_new(1.35);
 				if (driveReturn == true) {
 					Yblocked();
 				}
